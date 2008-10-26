@@ -41,6 +41,14 @@ feature 'JSPON backend',
   -default                  => 1,
   'KiokuDB::Backend::JSPON' => 0;
 
+feature 'XS acceleration for JSON',
+  -default   => 1,
+  'JSON::XS' => 0;
+
+feature 'MooseX::Storage integration',
+  -default          => 0,
+  'MooseX::Storage' => 0;
+
 feature 'Berkeley DB backend',
   -default                => has_bdb(),
   'BerkeleyDB::Manager'   => 0,
