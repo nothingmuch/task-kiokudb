@@ -13,6 +13,8 @@ my @inc = map { split } @Config{qw(usrinc incpath locincpth)};
 sub has_lib { scalar grep { length } ExtUtils::Liblist->ext("-l$_[0]") }
 
 sub has_bdb {
+	eval { require BerkeleyDB }
+		or
 	exists $ENV{BERKELEYDB_LIB}
 		or
 	-e '/usr/local/BerkeleyDB'
