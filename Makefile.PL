@@ -27,8 +27,6 @@ sub has_uuid {
 		return 1 if -e catfile($inc, qw(uuid uuid.h));
 	}
 
-	return 1 if has_lib("uuid");
-
 	return 0;
 }
 
