@@ -30,6 +30,14 @@ sub has_uuid {
 	return 0;
 }
 
+sub has_dbd {
+	eval { require DBD::SQLite }
+		or
+	eval { require DBD::Pg }
+		or
+	eval { require DBD::mysql }
+}
+
 
 name 'Task-KiokuDB';
 all_from 'lib/Task/KiokuDB.pm';
@@ -53,6 +61,10 @@ feature 'Berkeley DB backend',
   -default                => has_bdb(),
   'BerkeleyDB::Manager'   => 0,
   'KiokuDB::Backend::BDB' => 0;
+
+feature 'DBI backend',
+  -default                => has_dbd(),
+  'KiokuDB::Backend::DBI' => 0;
 
 feature 'libuuid based UUIDs',
   -default              => has_uuid(),
