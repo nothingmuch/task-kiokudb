@@ -45,9 +45,9 @@ all_from 'lib/Task/KiokuDB.pm';
 requires 'Test::use::ok';
 requires 'KiokuDB';
 
-feature 'JSPON backend',
+feature 'Files backend',
   -default                  => 1,
-  'KiokuDB::Backend::JSPON' => 0;
+  'KiokuDB::Backend::Files' => 0;
 
 feature 'XS acceleration for JSON',
   -default   => 1,
