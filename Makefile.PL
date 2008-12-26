@@ -38,6 +38,9 @@ sub has_dbd {
 	eval { require DBD::mysql }
 }
 
+sub has_couchdb {
+	eval { require AnyEvent::CouchDB };
+}
 
 name 'Task-KiokuDB';
 all_from 'lib/Task/KiokuDB.pm';
@@ -65,6 +68,10 @@ feature 'Berkeley DB backend',
 feature 'DBI backend',
   -default                => has_dbd(),
   'KiokuDB::Backend::DBI' => 0;
+
+feature 'CouchDB backend',
+  -default                    => has_couchdb(),
+  'KiokuDB::Backend::CouchDB' => 0;
 
 feature 'libuuid based UUIDs',
   -default              => has_uuid(),
