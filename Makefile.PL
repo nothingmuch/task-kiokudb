@@ -56,6 +56,10 @@ feature 'XS acceleration for JSON',
   -default   => 1,
   'JSON::XS' => 0;
 
+feature 'YAML::XS for dump/load & MooseX::YAML',
+  -default   => 1,
+  'YAML::XS' => 0;
+
 feature 'MooseX::Storage integration',
   -default          => 0,
   'MooseX::Storage' => 0;
