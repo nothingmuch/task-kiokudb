@@ -10,10 +10,10 @@ use File::Spec::Functions;
 
 my @inc = map { split } @Config{qw(usrinc incpath locincpth)};
 
-sub has_lib { scalar grep { length } ExtUtils::Liblist->ext("-l$_[0]") }
+sub has_lib { can_cc() and scalar grep { length } ExtUtils::Liblist->ext("-l$_[0]") }
 
 sub has_bdb {
-	eval { require BerkeleyDB }
+	can_use("BerkeleyDB")
 		or
 	exists $ENV{BERKELEYDB_LIB}
 		or
@@ -23,6 +23,8 @@ sub has_bdb {
 }
 
 sub has_uuid {
+	return 0 unless can_cc();
+
 	foreach my $inc ( @inc ) {
 		return 1 if -e catfile($inc, qw(uuid uuid.h));
 	}
@@ -31,15 +33,15 @@ sub has_uuid {
 }
 
 sub has_dbd {
-	eval { require DBD::SQLite }
+	can_use("DBD::SQLite")
 		or
-	eval { require DBD::Pg }
+	can_use("DBD::Pg"),
 		or
-	eval { require DBD::mysql }
+	scalar(can_use("DBD::mysql")),
 }
 
 sub has_couchdb {
-	eval { require AnyEvent::CouchDB };
+	scalar can_use("AnyEvent::CouchDB"),
 }
 
 name 'Task-KiokuDB';
@@ -53,11 +55,11 @@ feature 'Files backend',
   'KiokuDB::Backend::Files' => 0;
 
 feature 'XS acceleration for JSON',
-  -default   => 1,
+  -default   => scalar(can_cc()),
   'JSON::XS' => 0;
 
 feature 'YAML::XS for dump/load & MooseX::YAML',
-  -default   => 1,
+  -default   => scalar(can_cc()),
   'YAML::XS' => 0;
 
 feature 'MooseX::Storage integration',
