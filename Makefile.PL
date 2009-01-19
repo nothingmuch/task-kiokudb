@@ -80,7 +80,7 @@ feature 'CouchDB backend',
   'KiokuDB::Backend::CouchDB' => 0;
 
 feature 'libuuid based UUIDs',
-  -default              => has_uuid(),
+  -default              => scalar( can_cc() && has_uuid() ),
   'Data::UUID::LibUUID' => 0;
 
 auto_install;
