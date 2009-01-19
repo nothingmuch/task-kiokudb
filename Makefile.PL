@@ -15,11 +15,13 @@ sub has_lib { can_cc() and scalar grep { length } ExtUtils::Liblist->ext("-l$_[0
 sub has_bdb {
 	can_use("BerkeleyDB")
 		or
-	exists $ENV{BERKELEYDB_LIB}
-		or
-	-e '/usr/local/BerkeleyDB'
-		or
-	has_lib("db") or has_lib("libdb");
+	can_cc() && (
+		exists $ENV{BERKELEYDB_LIB}
+			or
+		-e '/usr/local/BerkeleyDB'
+			or
+		has_lib("db") or has_lib("libdb")
+	);
 }
 
 sub has_uuid {
