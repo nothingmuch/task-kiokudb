@@ -85,5 +85,17 @@ feature 'libuuid based UUIDs',
   -default              => scalar( can_cc() && has_uuid() ),
   'Data::UUID::LibUUID' => 0;
 
+feature 'generic user object',
+	-default       => 0,
+	'KiokuX::User' => 0;
+
+feature 'generic model wrapper',
+	-default        => 0,
+	'KiokuX::Model' => 0;
+
+feature 'Catalyst integration',
+	-default                   => 0,
+	'Catalyst::Model::KiokuDB' => 0;
+
 auto_install;
 WriteAll;

@@ -76,6 +76,20 @@ a DB using L<MooseX::YAML> with modern/up to spec YAML files.
 
 Defaults to true if you have a compiler.
 
+=item L<KiokuX::User>
+
+A reusable role for user objects with L<Authen::Passphrase> based
+authentication
+
+=item L<KiokuX::Model>
+
+A wrapper for integrating L<KiokuDB> plus per app convenience methods into
+frameworks.
+
+=item L<Catalyst::Model::KiokuDB>
+
+L<Catalyst> integration using L<KiokuX::Model>.
+
 =back
 
 =head1 LICENSE
