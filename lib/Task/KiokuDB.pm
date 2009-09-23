@@ -34,6 +34,10 @@ All of these are considered optional.
 
 =over 4
 
+=item L<KiokuDB::Cmd>
+
+Commands for the C<kioku> command line program.
+
 =item L<KiokuDB::Backend::Files>
 
 The file backend. Defaults to true.

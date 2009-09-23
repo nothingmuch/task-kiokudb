@@ -52,6 +52,10 @@ all_from 'lib/Task/KiokuDB.pm';
 requires 'Test::use::ok';
 requires 'KiokuDB';
 
+feature 'CLI',
+  -default       => 1,
+  'KiokuDB::Cmd' => 0;
+
 feature 'Files backend',
   -default                  => 1,
   'KiokuDB::Backend::Files' => 0;
